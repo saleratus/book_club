@@ -7,7 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require './app/models/book'
 
+User.destroy_all
+Review.destroy_all
 Book.destroy_all
+
+user_1 = User.create(username: "SleeplessInSeattle")
+user_2 = User.create(username: "InsomniaMadness")
+user_3 = User.create(username: "HaventSleptInDays")
+user_5 = User.create(username: "NeedMedication")
+user_6 = User.create(username: "LastResort")
+user_8 = User.create(username: "JonesingForZanax")
+user_9 = User.create(username: "LunestaLover")
+user_10 = User.create(username: "HeartsForHalcyon")
+user_11 = User.create(username: "SonataIsMySweetyPie")
+user_12 = User.create(username: "AmbienIsEverything")
+user_13 = User.create(username: "ZombieJoe")
+user_14 = User.create(username: "RestlessRoger")
+user_15 = User.create(username: "MidnightDreary")
+user_16 = User.create(username: "AllNighter")
+
+
 
 # Single Author
 book_1 = Book.create(title: 'Being and Time')
@@ -30,6 +49,27 @@ book_16 = Book.create(title: 'Lost Epistemological Discourses')
 # Multiple Authors
 book_17 = Book.create(title: 'Medieval Scholasticism')
 book_18 = Book.create(title: 'German Philosophy in the 19th Century')
+
+review_1 = Review.create(rating: 1, title: "Ineffective", user: user_1, book: book_1)
+review_2 = Review.create(rating: 2, title: "Not the Best", user: user_1, book: book_2)
+review_3 = Review.create(rating: 2, title: "Could Be Better", user: user_1, book: book_3)
+review_4 = Review.create(rating: 1, title: "I Want A Refund", user: user_14, book: book_1)
+review_5 = Review.create(rating: 2, title: "Not as Tiresome as I Hoped", user: user_16, book: book_16)
+review_6 = Review.create(rating: 1, title: "Not Useful", user: user_2, book: book_15)
+review_7 = Review.create(rating: 1, title: "There Are Better Sleep Aids Out There", user: user_3, book: book_14)
+review_8 = Review.create(rating: 1, title: "Not As Effective As I Hoped", user: user_4, book: book_13)
+review_9 = Review.create(rating: 2, title: "It Helped, But Not Much", user: user_5, book: book_12)
+review_10 = Review.create(rating: 1, title: "This Book Did Not Help Me Sleep", user: user_6, book: book_11)
+review_11 = Review.create(rating: 1, title: "Not As Dry As Advertised", user: user_7, book: book_10)
+review_12 = Review.create(rating: 1, title: "Is It Only Me?", user: user_8, book: book_9)
+review_13 = Review.create(rating: 2, title: "Mediocre Effectiveness", user: user_9, book: book_8)
+review_14 = Review.create(rating: 1, title: "Other Books Will Help You Sleep Better", user: user_10, book: book_7)
+review_15 = Review.create(rating: 1, title: "I Was Awake All Night", user: user_11, book: book_6)
+review_16 = Review.create(rating: 3, title: "Mediocre Sleep Aid", user: user_12, book: book_5)
+review_17 = Review.create(rating: 2, title: "Marketing Scam - Take a Nyquil Instead", user: user_13, book: book_4)
+review_18 = Review.create(rating: 1, title: "Boring, but Not Boring Enough", user: user_14, book: book_3)
+review_19 = Review.create(rating: 1, title: "Didn't Work for Me", user: user_15, book: book_2)
+review_20 = Review.create(rating: 2, title: "Wachet Auf!!", user: user_16, book: book_1)
 
 author_1 = Author.create(name: 'Martin Heideger')
 author_2 = Author.create(name: 'Ludwig Wittgenstein')
