@@ -1,1 +1,5 @@
 Books Page
+
+<% @books.each do | book | %>
+  <%= link_to book.title, book_path(book), class: 'book_title' %>
+<% end %>
