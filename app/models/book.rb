@@ -5,4 +5,12 @@ class Book < ApplicationRecord
 
   validates_presence_of :title
 
+  def average_rating
+    self.reviews.average(:rating).round(2)
+  end
+
+  def review_count
+    self.reviews.count
+  end
+
 end
