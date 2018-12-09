@@ -12,27 +12,27 @@ class Book < ApplicationRecord
     return page_count_sort(direction)   if sort_type == 'page_count'
     return review_count_sort(direction) if sort_type == 'review_count'
     return avg_rating_sort(direction)   if sort_type == 'avg_rating'
-    title_sort #Default sort if sort_type = nil
+    title_sort #Default sort if no arguements
   end
 
   def self.title_sort
     order(:title)
   end
-  def self.page_count_sort(direction = :asc)
+  def self.page_count_sort(direction = 'ASC')
     order(pages: direction)
   end
-  def self.review_count_sort(direction = :asc)
-    order('rev_count ASC')
+  def self.review_count_sort(direction = 'ASC')
+    joins(:reviews)
+    .select("books.*, coalesce(count(reviews),0) as rev_count")
+    .order("rev_count #{direction}")
+    .group(:id)
   end
-  def self.avg_rating_sort(direction = :asc)
-    order('avg_rating ASC')
+  def self.avg_rating_sort(direction = 'ASC')
+    joins(:reviews)
+    .select("books.*, avg(reviews.rating) as avg_review")
+    .order("avg_review #{direction}")
+    .group(:id)
   end
-
-  #def self.sort_prep
-    #select('books.*, coalesce(AVG(rating),0) AS avg_rating, COUNT(reviews) AS rev_count')
-    #.left_outer_joins(:reviews)
-    #.group(:id)
-  #end
 
   ### STATS ###
 
