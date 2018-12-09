@@ -3,12 +3,7 @@ Single Book
 <%= @book.title %>
 <%= @book.pages %>
 <% @book.authors.each do |author| %>
-<ul>
-<p>Author(s):</b> <%= author.name %></p>
 <p><%= link_to "#{author.name}", author_path(author) %></p>
-<p>Pages:</b> <%= @book.pages %></p>
-<p>Year:</b> <%= @book.year %></p>
-</ul>
 <% end %>
 
 <% @book.reviews.each do |review| %>

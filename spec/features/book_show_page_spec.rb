@@ -10,16 +10,17 @@ describe 'BOOK SHOW page' do
       click_link book.title
       expect(page).to have_content('Single Book')
     end
+
     it "displays information for one article" do
       book = Book.create(title: 'Being and Time')
       visit book_path(book)
       expect(page).to have_content(book.title)
     end
-
   end
+
   it 'user can see book information' do
     book_1 = Book.create(title: "Book the First", pages: 111, year: 2001,)
-    book_1.authors.create(name: "Author One"
+    book_1.authors.create(name: "Author One")
     book_1.authors.create(name: "Author two")
     user_1 = User.create(name: "User One")
     user_2 = User.create(name: "User Two")
@@ -44,3 +45,4 @@ describe 'BOOK SHOW page' do
       expect(page).to have_content(review.description)
     end
   end
+end
