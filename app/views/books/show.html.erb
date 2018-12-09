@@ -8,9 +8,9 @@ Single Book
 
 <% @book.reviews.each do |review| %>
 <ul>
-<li><%= review.title %></li>
-<li><%= link_to review.user.name, user_path(review.user) %></li>
-<li><%= review.rating %></li>
-<li><%= review.description %></li>
+  <li><%= review.title %></li>
+  <li><%= link_to review.username, user_path(review.user) %></li>
+  <li><%= review.rating %></li>
+  <li><%= review.description %></li>
 </ul>
 <% end %>
