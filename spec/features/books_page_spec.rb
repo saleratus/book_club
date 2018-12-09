@@ -16,7 +16,7 @@ describe 'BOOKS page' do
     review_3 = Review.create(rating: 2, title: "Review Title 3", body: "Lorem ipsum dolor sit amet three, consectetur adipiscing elit.", user: user_1, book: book_3)
     review_4 = Review.create(rating: 1, title: "Review Title 4", body: "Lorem ipsum dolor sit amet four, consectetur adipiscing elit.", user: user_2, book: book_3)
     review_5 = Review.create(rating: 2, title: "Review Title 5", body: "Lorem ipsum dolor sit amet five, consectetur adipiscing elit.", user: user_3, book: book_3)
-    visit '/books'
+    visit books_path
   end
 
   it 'shows book listing' do
@@ -31,5 +31,16 @@ describe 'BOOKS page' do
     expect(page).to have_link('Book the Third')
   end
 
+  it 'user_can_see_all_book_information' do
+
+    expect(page).to have_content("#{book_1.title}")
+    expect(page).to have_content("Year: #{book_1.year}")
+    expect(page).to have_content("Pages: #{book_1.pages}")
+    expect(page).to have_content("Author(s): #{author_1.name}")
+    expect(page).to have_content("#{book_2.title}")
+    expect(page).to have_content("Year: #{book_2.year}")
+    expect(page).to have_content("Pages: #{book_2.pages}")
+    expect(page).to have_content("Author(s): #{author_2.name}")
+  end
 
 end
