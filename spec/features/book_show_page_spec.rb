@@ -4,30 +4,23 @@ describe 'BOOK SHOW page' do
 
   context 'is linked to from the book index' do
 
-    it 'shows a heading' do
-      book = Book.create(title: 'Being and Time')
-      visit books_path
-      click_link book.title
-      expect(page).to have_content('Single Book')
-    end
-
-    it "displays information for one article" do
-      book = Book.create(title: 'Being and Time')
-      visit book_path(book)
-      expect(page).to have_content(book.title)
-    end
   end
 
   it 'user can see book information' do
-    book_1 = Book.create(title: "Book the First", pages: 111, year: 2001,)
-    book_1.authors.create(name: "Author One")
-    book_1.authors.create(name: "Author two")
     user_1 = User.create(username: "User One")
     user_2 = User.create(username: "User Two")
     user_3 = User.create(username: "User Three")
-    user_1.reviews.create(title: "Review Title 1", description: "Lorem ipsum dolor sit amet one, consectetur adipiscing elit.", rating: 4, book: book_1)
-    user_2.reviews.create(title: "Review Title 2", description: "Lorem ipsum dolor sit amet one, consectetur adipiscing elit.", rating: 5, book: book_1)
-    user_3.reviews.create(title: "Review Title 3", description: "Lorem ipsum dolor sit amet one, consectetur adipiscing elit.", rating: 3, book: book_1)
+    author_1 = Author.create(name: 'Author One')
+    author_2 = Author.create(name: 'Author Two')
+    author_3 = Author.create(name: 'Author Three')
+    book_1 = Book.create(title: 'Book the First', authors: [author_1, author_3], pages: 111, year: 2001)
+    book_2 = Book.create(title: 'Book the Second', authors: [author_2], pages: 222, year: 2002)
+    book_3 = Book.create(title: 'Book the Third', authors: [author_3, author_2, author_1], pages: 333, year: 2003)
+    review_1 = Review.create(rating: 1, title: "Review Title 1", body: "Lorem ipsum dolor sit amet one, consectetur adipiscing elit.", user: user_1, book: book_1)
+    review_2 = Review.create(rating: 2, title: "Review Title 2", body: "Lorem ipsum dolor sit amet two, consectetur adipiscing elit.", user: user_1, book: book_2)
+    review_3 = Review.create(rating: 2, title: "Review Title 3", body: "Lorem ipsum dolor sit amet three, consectetur adipiscing elit.", user: user_1, book: book_3)
+    review_4 = Review.create(rating: 1, title: "Review Title 4", body: "Lorem ipsum dolor sit amet four, consectetur adipiscing elit.", user: user_2, book: book_3)
+    review_5 = Review.create(rating: 2, title: "Review Title 5", body: "Lorem ipsum dolor sit amet five, consectetur adipiscing elit.", user: user_3, book: book_3)
 
 
     visit book_path(book_1)
@@ -40,9 +33,9 @@ describe 'BOOK SHOW page' do
     expect(page).to have_content("#{book_1.pages}")
     book_1.reviews.each do |review|
       expect(page).to have_content(review.title)
-      expect(page).to have_content(review.username)
+      expect(page).to have_content(review.user.username)
       expect(page).to have_content(review.rating)
-      expect(page).to have_content(review.description)
+      expect(page).to have_content(review.body)
     end
   end
 end
