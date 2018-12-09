@@ -5,7 +5,6 @@ Books Page
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Books</title>
     <!-- <link rel="stylesheet" href="stylesheets/reset.css" title="text/css" /> -->
     <!-- <link rel="stylesheet" href="stylesheets/main.css" title="text/css" /> -->
   </head>
@@ -34,12 +33,20 @@ Books Page
       <div id="contents">
         <% @books.each do |book| %>
           <div class="book_entry">
-            <h3><%= book.title %></h3>
-          
+            <%= link_to book.title, book_path(book), class: 'book-title' %>
+            <aside><p>Pages: <%= book.pages %></p>
+              <p>Year: <%= book.year %></p>
+              <p>Total Reviews: <%= book.review_count %></p>
+              <p>Average Rating: <%= book.average_rating %></p></aside>
           </div>
+        <p> Author(s):</p>
+        <% book.authors.each do |author| %>
+          <div class="author_entry">
+            <%=link_to author.name, author_path(author), class: 'author-name' %>
+          </div>
+          <% end %>
         <% end %>
       </div>
-
     </div>
   </body>
 </html>
