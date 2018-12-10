@@ -1,29 +1,7 @@
-Books Page
-<!doctype html>
-
-<html>
-
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <!-- <link rel="stylesheet" href="stylesheets/reset.css" title="text/css" /> -->
-    <!-- <link rel="stylesheet" href="stylesheets/main.css" title="text/css" /> -->
-  </head>
-
-
-  <body>
-    <div id="wrapper">
-
-
-      <div id="banner">
-        <div id="title">
-          <h1>Soporific Book Club</h1>
-          <h2>By Tom and Will</h2>
-        </div>
-      </div>
-
-
       <div id="sortbar">
         <ul>
+          <li><%= link_to "home", books_path %></li>
+          <li><%= link_to "books", books_path %></li>
           <li><a href="/books">Title</a></li>
           <li><a href="/books?sort=page_count">Page Count Ascending</a></li>
           <li><a href="/books?sort=page_count&direction=DESC">Page Count Descending</a></li>
@@ -33,20 +11,16 @@ Books Page
       <div id="contents">
         <% @books.each do |book| %>
           <div class="book_entry">
-            <%= link_to book.title, book_path(book), class: 'book-title' %>
-            <aside><p>Pages: <%= book.pages %></p>
-              <p>Year: <%= book.year %></p>
-              <p>Total Reviews: <%= book.review_count %></p>
-              <p>Average Rating: <%= book.average_rating %></p></aside>
+            <h3>
+              <%= link_to book.title, book_path(book), class: 'book-author' %>
+              <%= " (#{book.year}) by " %>
+              <% book.authors.each do |author| %>
+                  <%=link_to author.name, author_path(author), class: 'book-author' %>
+              <% end %>
+            </h3>
+            <h4>
+              <%= "Pages: #{book.pages}, Total Reviews: #{book.review_count}, Average Rating: #{book.average_rating}" %>
+            </h4>
           </div>
-        <p> Author(s):</p>
-        <% book.authors.each do |author| %>
-          <div class="author_entry">
-            <%=link_to author.name, author_path(author), class: 'author-name' %>
-          </div>
-          <% end %>
         <% end %>
       </div>
-    </div>
-  </body>
-</html>

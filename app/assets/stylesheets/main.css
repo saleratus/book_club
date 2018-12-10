@@ -1,0 +1,98 @@
+body {
+  background-image: url("sheep.png");
+  background-repeat: repeat;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+h1 {
+  font-size: 70px;
+  padding: 0 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  text-align: center;
+}
+
+h3 {
+  style: inline
+  font-size: 18px;
+  text-align: left;
+  margin: 5px 0;
+}
+
+h4 {
+  font-size: 14px;
+  text-align: left;
+  padding: 0 0 10px 0;
+}
+
+p {
+  font-size: 14px;
+  padding: 0 0 10px 0;
+}
+
+.book_entry {
+}
+
+.book-author {
+  font-family: century, serif;
+}
+
+#wrapper {
+  width: 840px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 0 40px;
+  background-color: white;
+  font-family: Snell Roundhand, cursive;
+}
+
+#banner {
+  padding: 20px 0;
+}
+
+#title {
+  text-align: left;
+  margin: 0 0 0 0;
+}
+
+#sortbar {
+  clear: both;
+}
+
+#sortbar ul {
+  padding: 10px 0 10px 0; margin: 0;
+  border-top: 1px #000 dotted;
+  border-bottom: 1px #000 dotted;
+}
+
+#sortbar ul li {
+  display: inline;
+  list-style-type: none;
+  margin: 0 40px 0 5px;
+}
+
+#contents {
+  padding: 0 0 40px 0;
+}
+
+.book_entry {
+  clear: both;
+  padding: 20px 0;
+}
+
+.book_title {
+  display: inline;
+}
+
+#pagestats {
+  clear: both;
+  border-top: 1px #000 dotted;
+  margin: 20px 0 0 0;
+  padding: 20px 0;
+}

@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Philosophy Book Club</title>
+    <title>The Soporific Book Club</title>
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <div class="navbar-class">
-      <u1>
-        <li><%= link_to "home", books_path %></li>
-        <li><%= link_to "books", books_path %></li>
-      </ul>
+    <div id="wrapper">
+
+
+      <div id="banner">
+        <div id="title">
+          <h1>The Soporific Book Club</h1>
+          <h2>Friends for Your Evening Hours</h2>
+        </div>
+      </div>
+
+      <%= yield %>
+
     </div>
-    <%= yield %>
   </body>
 </html>
