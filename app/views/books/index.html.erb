@@ -1,26 +1,35 @@
-      <div id="sortbar">
-        <ul>
-          <li><%= link_to "home", books_path %></li>
-          <li><%= link_to "books", books_path %></li>
-          <li><a href="/books">Title</a></li>
-          <li><a href="/books?sort=page_count">Page Count Ascending</a></li>
-          <li><a href="/books?sort=page_count&direction=DESC">Page Count Descending</a></li>
-        </ul>
-      </div>
+  <div id="sortbar">
+    <ul>
+      <li><%= link_to "HOME", books_path %></li>
+      <li><%= link_to "BOOKS", books_path %></li>
+      <li><a href="/books">TITLE</a></li>
+      <li><a href="/books?sort=page_count">PAGES ASC</a></li>
+      <li><a href="/books?sort=page_count&direction=DESC">PAGES DESC</a></li>
+      <li><a href="/books?sort=avg_rating">RATING ASC</a></li>
+      <li><a href="/books?sort=avg_rating&direction=DESC">RATING DESC</a></li>
+      <li><a href="/books?sort=review_count">REVIEWS ASC</a></li>
+      <li><a href="/books?sort=review_count&direction=DESC">REVIEWS DESC</a></li>
 
-      <div id="contents">
-        <% @books.each do |book| %>
-          <div class="book_entry">
-            <h3>
-              <%= link_to book.title, book_path(book), class: 'book-author' %>
-              <%= " (#{book.year}) by " %>
-              <% book.authors.each do |author| %>
-                  <%=link_to author.name, author_path(author), class: 'book-author' %>
-              <% end %>
-            </h3>
-            <h4>
-              <%= "Pages: #{book.pages}, Total Reviews: #{book.review_count}, Average Rating: #{book.average_rating}" %>
-            </h4>
-          </div>
-        <% end %>
+    </ul>
+  </div>
+
+  <div id="contents">
+    <% @books.each do |book| %>
+      <div class="book-entry">
+        <h3>
+          <%= link_to book.title, book_path(book), class: 'title-author' %>
+          <div class="year-display"><%= " (#{book.year}) by " %></div>
+          <% book.authors.each do |author| %>
+              <%=link_to author.name, author_path(author), class: 'title-author' %>
+          <% end %>
+        </h3>
+        <h4>
+          <%= "Pages: #{book.pages}, Total Reviews: #{book.review_count}, Average Rating: #{book.average_rating}" %>
+        </h4>
       </div>
+    <% end %>
+  </div>
+
+  <div id="pagestats">
+    <h2>Page Statistics</h2>
+  </div>
