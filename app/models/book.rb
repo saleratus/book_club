@@ -23,7 +23,7 @@ class Book < ApplicationRecord
   end
   def self.review_count_sort(direction = 'ASC')
     joins(:reviews)
-    .select("books.*, coalesce(count(reviews),0) as rev_count")
+    .select("books.*, coalesce(count(reviews.id),0) as rev_count")
     .order("rev_count #{direction}")
     .group(:id)
   end
