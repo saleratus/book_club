@@ -31,7 +31,6 @@ RSpec.describe Book, type: :model do
       @review_5 = Review.create(rating: 2, title: "Review Title 5", body: "Lorem ipsum dolor sit amet five, consectetur adipiscing elit.", user: @user_2, book: @book_3)
       @review_6 = Review.create(rating: 2, title: "Review Title 6", body: "Lorem ipsum dolor sit amet six, consectetur adipiscing elit.", user: @user_3, book: @book_3)
       @review_7 = Review.create(rating: 3, title: "Review Title 7", body: "Lorem ipsum dolor sit amet seven, consectetur adipiscing elit.", user: @user_4, book: @book_3)
-
     end
 
     it 'finds average rating for a book' do
@@ -56,11 +55,11 @@ RSpec.describe Book, type: :model do
       expect(Book.sort('page_count', 'DESC')).to eq([@book_3, @book_2, @book_1, @book_4])
     end
 
-    xit 'sorts by review count - ascending' do
+    it 'sorts by review count - ascending' do
       expect(Book.sort('review_count')).to eq([@book_4, @book_1, @book_2, @book_3])
     end
-    xit 'sorts by review count - descending' do
-      expect(Book.sort('review_count', 'DESC')).to eq([@book_3, @book2, @book_1, @book_4])
+    it 'sorts by review count - descending' do
+      expect(Book.sort('review_count', 'DESC')).to eq([@book_3, @book_2, @book_1, @book_4])
     end
 
     it 'sorts by average rating - ascending' do
@@ -69,6 +68,15 @@ RSpec.describe Book, type: :model do
     it 'sorts by average rating - descending' do
       expect(Book.sort('avg_rating', 'DESC')).to eq([@book_2, @book_3, @book_1])
     end
+
+    it 'Finds top three by rating' do
+      expect(Book.three_winners).to eq([@book_2, @book_3, @book_1])
+    end
+
+    it 'Finds bottom three by rating' do
+      expect(Book.three_losers).to eq([@book_1, @book_3, @book_2])
+    end
+
   end
 
 end

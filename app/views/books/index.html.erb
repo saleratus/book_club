@@ -1,15 +1,18 @@
   <div id="sortbar">
     <ul>
-      <li><%= link_to "HOME", books_path %></li>
+      <li><%= link_to "HOME", root_path %></li>
       <li><%= link_to "BOOKS", books_path %></li>
-      <li><a href="/books">TITLE</a></li>
-      <li><a href="/books?sort=page_count">PAGES ASC</a></li>
-      <li><a href="/books?sort=page_count&direction=DESC">PAGES DESC</a></li>
-      <li><a href="/books?sort=avg_rating">RATING ASC</a></li>
-      <li><a href="/books?sort=avg_rating&direction=DESC">RATING DESC</a></li>
-      <li><a href="/books?sort=review_count">REVIEWS ASC</a></li>
-      <li><a href="/books?sort=review_count&direction=DESC">REVIEWS DESC</a></li>
 
+      <li><%= link_to "TITLE", books_path %></li>
+
+      <li><%= link_to "PAGES ASC", books_path, sort: 'page_count' %></li>
+      <li><%= link_to "PAGES DESC", books_path, sort: 'page_count', direction: 'DESC' %></li>
+
+      <li><%= link_to "RATING ASC", books_path, sort: 'avg_rating' %></li>
+      <li><%= link_to "RATING DESC", books_path, sort: 'avg_rating', direction: 'DESC' %></li>
+
+      <li><%= link_to "REVIEWS ASC", books_path, sort: 'review_count' %></li>
+      <li><%= link_to "REVIEWS DESC", books_path , sort: 'review_count', direction: 'DESC' %></li>
     </ul>
   </div>
 
@@ -28,8 +31,25 @@
         </h4>
       </div>
     <% end %>
+    <%= link_to "NEW BOOK", new_book_path, class: 'title-author' %>
   </div>
 
   <div id="pagestats">
-    <h2>Page Statistics</h2>
+    <h2>Highest and Lowest</h2>
+    <p>Highest rated books:</p>
+    <% @high_rated_books.each do |book| %>
+      <%= link_to book.title, book_path(book), class: 'title-author' %>
+      <%= "Rating: #{book.average_rating}" %>
+    <% end %>
+    <p>Lowest rated books:</p>
+    <% @low_rated_books.each do |book| %>
+      <%= link_to book.title, book_path(book), class: 'title-author' %>
+      <%= "Rating: #{book.average_rating}" %>
+    <% end %>
+    <p>Most Prolific Reviewers:</p>
+    <% @prolific_reviewers.each do |user| %>
+      <%= link_to user.username, user_path(user), class: 'title-author' %>
+      <%= "Reviews: #{user.reviews.count}" %>
+    <% end %>
+
   </div>
