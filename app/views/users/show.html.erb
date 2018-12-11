@@ -1,1 +1,26 @@
-Single User
+<html class="show_page">
+<div class="show_page">
+
+  <h3><%= "Reviewer: #{@user.username}" %></h3>
+
+  <% @user.reviews.each do |review| %>
+  <ul>
+
+    <li><%= "Book Reviewed: #{review.book.title}" %></li>
+    <br>
+    <li><%= "Review Title: #{review.title}" %></li>
+    <br>
+    <li><%= "Review: #{review.body}" %></li>
+    <br>
+    <li><%= "Rating: #{review.rating}" %></li>
+    <br>
+  </ul>
+  <br>
+  <%= link_to "Delete Review", review_path(review), method: :delete %>
+  <br>
+  <br>
+  <br>
+  <% end %>
+
+</div>
+</html>

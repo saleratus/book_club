@@ -1,17 +1,28 @@
-Single Book
+<div class="contents">
 
-<%= @book.title %>
-<%= @book.pages %>
-<%= @book.year %>
-<% @book.authors.each do |author| %>
-<p><%= link_to "#{author.name}", author_path(author) %></p>
-<% end %>
+  <h3>
+    <%= @book.title %>
+    (<%= @book.year %>)
+  </h3>
+  <h4>
+  <% @book.authors.each do |author| %>
+  <p>Author: <%= link_to "#{author.name}", author_path(author) %>  (<%= @book.pages %>pages)</p>
+  </h4>
+  <% end %>
+</div>
 
-<% @book.reviews.each do |review| %>
-<ul>
-  <h3><li><%= review.title %></li></h3>
-  <li><%= link_to review.user.username, user_path(review.user) %></li>
-  <li><%= review.rating %></li>
-  <li><%= review.body %></li>
-</ul>
+  <% @book.reviews.each do |review| %>
+  <ul>
+    <li>Review Title: <%= review.title %></li>
+    <br>
+    <li>User: <%= link_to review.user.username, user_path(review.user) %></li>
+    <br>
+    <li>Rating: <%= review.rating %></li>
+    <br>
+    <li><%= review.body %></li>
+  </ul>
+  <br>
+  <br>
+  <br>
 <% end %>
+<p><%= link_to "Delete Book", book_path(@book), method: :delete %></p>
