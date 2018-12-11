@@ -17,7 +17,7 @@ describe 'homepage' do
     visit '/'
     expect(page).to have_link("BOOKS")
     click_link "BOOKS"
-    expect(page).to have_content("Books Page")
+    expect(current_path).to eq(books_path)
   end
 
 end
