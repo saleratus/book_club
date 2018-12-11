@@ -22,7 +22,7 @@ class Book < ApplicationRecord
     order(pages: direction)
   end
   def self.review_count_sort(direction = 'ASC')
-    joins(:reviews)
+    left_outer_joins(:reviews)
     .select("books.*, coalesce(count(reviews.id),0) as rev_count")
     .order("rev_count #{direction}")
     .group(:id)
@@ -44,12 +44,10 @@ class Book < ApplicationRecord
     reviews.count
   end
   def self.three_winners
-    #winners = order(avg_rating: :desc).limit(3)
-    #winners.reorder(avg_rating: :asc)
+    self.avg_rating_sort('DESC').limit(3)
   end
   def self.three_losers
-    #winners = order(avg_rating: :asc).limit(3)
-    #winners.reorder(avg_rating: :desc)
+    self.avg_rating_sort('ASC').limit(3)
   end
 
 end
