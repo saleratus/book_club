@@ -1,0 +1,20 @@
+<h2>Add Book</h2>
+
+<main class="new-book-form">
+  <%= form_for(@book) do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :pages, :pages %>
+    <%= f.number_field :pages %>
+
+    <%= f.label :year, :year %>
+    <%= f.number_field :year %>
+
+    <%= f.label :authors %>
+    <input type="text" name="authors" placeholder="">
+
+    <%= f.submit %>
+  <%end%>
+</main>
