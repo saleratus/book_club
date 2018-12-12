@@ -1,1 +1,28 @@
-Single Author
+<body class="show_page">
+<br>
+<br>
+<br>
+<br>
+<br>
+<% @author.books.each do |book| %>
+<br>
+<h2>Author: <%= link_to "#{@author.name}"%></h2>
+<ul>
+  <li><%= link_to "#{book.title}", book_path(book) %></li>
+  <br>
+  <li><%= "Year published: #{book.year }"%></li>
+  <br>
+  <li><%= "Pages: #{book.pages}" %></li>
+  <% if book.many_authors(@author.id).count > 0 %>
+  <% book.many_authors(@author.id).each do |co_author| %>
+  <br>
+  <br>
+  <p>Co-Author: <%= link_to "#{co_author.name}", author_path(co_author) %></p>
+  <% end %>
+  <% end %>
+</ul>
+<% end %>
+<br>
+<br>
+<%= link_to "Delete Author", author_path(@author), method: :delete %>
+</body>

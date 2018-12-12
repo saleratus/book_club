@@ -51,4 +51,7 @@ class Book < ApplicationRecord
     self.avg_rating_sort('ASC').limit(3)
   end
 
+  def many_authors(id)
+   authors.where.not(id: id)
+ end
 end
