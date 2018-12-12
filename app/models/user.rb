@@ -12,4 +12,14 @@ class User < ApplicationRecord
     .limit(3)
   end
 
+  def sorted_reviews(params)
+
+    if params[:sort] == 'newest'
+      reviews.order(created_at: :desc)
+    elsif params[:sort] == 'oldest'
+      reviews.order(created_at: :asc)
+    else
+      reviews
+    end
+  end
 end

@@ -25,5 +25,5 @@ describe 'USER SHOW page' do
   it 'shows a heading' do
     visit books_path(@book_1)
     expect(page).to have_content("#{@book_1.title}")
-    end
+  end
 end
