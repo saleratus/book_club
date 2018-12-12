@@ -24,10 +24,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
-    authors_array = Author.get_authors_from_names(book_params[:authors].split(","))
-    book_params[:authors] = authors_array
-    book = Book.new(book_params)
+    book = Book.create(book_params)
     if book.save
       redirect_to "/books/#{book.id}"
     else
@@ -38,8 +35,12 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    #I've used standard html for authors in the form. That's why I've left authors out here.
-    #Ask about this.
-    params.require(:book).permit(:title, :year, :pages)
+    param_set = params.require(:book).permit(:title, :year, :pages, :authors)
+    author_names = param_set[:authors].split(",")
+    param_set[:authors] = author_names.map do |name|
+      Author.find_or_create_by(name: name)
+    end
+    param_set[:title] = param_set[:title].titleize
+    param_set
   end
 end
