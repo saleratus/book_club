@@ -44,6 +44,35 @@ class Book < ApplicationRecord
   def review_count
     reviews.count
   end
+
+  def sort_reviews(direction)
+    reviews.order("rating #{direction}")
+  end
+
+  def self.sort_reviews_number(direction)
+    Book.arrange("reviews_count", "#{direction}")
+  end
+
+  def self.num_pages_sort(direction)
+    Book.order("pages #{direction}")
+  end
+
+  def top_3_reviews
+    sort_reviews('DESC').first(3)
+  end
+
+  def bottom_3_reviews
+    sort_reviews('ASC').first(3)
+  end
+
+  def self.highest_rated_3
+    Book.arrange('avg_rating', 'DESC').first(3)
+  end
+
+  def self.lowest_rated_3
+    Book.arrange('avg_rating', 'ASC').first(3)
+  end
+  
   def self.three_winners
     self.avg_rating_sort('DESC').limit(3)
   end
