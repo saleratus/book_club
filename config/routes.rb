@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books, only: [:index, :show, :new, :create, :destroy] do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, shallow: true, only: [:new, :create]
   end
   resources :reviews, :only => [:destroy]
 
   resources :authors, only: [:show, :new, :create, :destroy]
 
   resources :users, only: [:show, :new, :create]
-
 end
