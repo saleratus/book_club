@@ -7,6 +7,14 @@
 <% @author.books.each do |book| %>
 <br>
 <h2>Author: <%= link_to "#{@author.name}"%></h2>
+<% if book.top_3_reviews.first %>
+<ul>
+  <p>Top rating: </p>
+  <li><%= "Review Title: #{book.top_3_reviews.first.title}" %></li>
+  <li><%= "Rating: #{book.top_3_reviews.first.rating}" %></li>
+  <li>Reviewer: <%= link_to "#{book.top_3_reviews.first.user.username}", user_path(book.top_3_reviews.first.user_id) %></li>
+</ul>
+<% end %>
 <ul>
   <li><%= link_to "#{book.title}", book_path(book) %></li>
   <br>
